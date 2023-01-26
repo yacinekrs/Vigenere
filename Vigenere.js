@@ -1,7 +1,7 @@
 function afficher(){
-  var saisie = document.getElementById("saisie").value;
-  var lower = saisie.toLowerCase()
-  var outString = lower.replace(/[\s+`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+  let saisie = document.getElementById("saisie").value;
+  let lower = saisie.toLowerCase()
+  let outString = lower.replace(/[\s+`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
   document.getElementById("affiche").value = outString ;
   }
 
@@ -9,54 +9,38 @@ function afficher(){
 function chiffrer(){
   const DIFF_UPPER_LOW_TO_NMBR = 96;
 
-  var brut = document.getElementById("brut").value
-  var brutLow = brut.toLowerCase();
-  var ascii_code_brut = brutLow.charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
+  let brut = document.getElementById("brut").value  // let x = 'Yacineg'; 
+  let taille_brut = brut.length;  // let taille_y = y.length 
 
-  var cle = document.getElementById("cle").value;
-  var cleLow = cle.toLowerCase();
-  var ascii_code_cle = cleLow.charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
+  let cle = document.getElementById("cle").value; // let y = 'abc'; 
+  let taille_cle = cle.length;  // let taille_x = x.length 
 
+  let nb_repeat = Math.round(taille_brut/taille_cle); // let nb_repeat = Math.round(taille_x/taille_y);
+  let cle_rep = cle.repeat(nb_repeat); // let y_rep = y.repeat(nb_repeat)
+  
+  const charsbrut = brut.split('');   // const chars = x.split('');
+  console.log(charsbrut);// console.log(charscle);
 
-  var chiffr = ascii_code_cle + ascii_code_brut;
+  const charscle = cle_rep.split(''); // const charscle = y_rep.split(''); 
+  console.log(charscle);   // console.log(chars);
   
-  const charsbrut = brutLow.split('');
-  console.log(charsbrut);
+  let chf = [];
+  
+  for (let i = 0; i < charsbrut.length ; i++ ) {
 
-  const charscle = cleLow.split('');
-  console.log(charscle);
-
-  // let x = 'Yacinebg'; 
-  // let y = 'abc'; 
-  
-  // let taille_x = x.length  
-  // let taille_y = y.length  
-  
-  // let nb_repeat = Math.round(taille_x/taille_y);
-  // console.log("nombre de  repretition ",nb_repeat);
-  // let y_rep = y.repeat(nb_repeat)
-  
-  // const chars1 = y_rep.split('');
-  // console.log(chars1);
-  
-  // const chars = x.split('');
-  // console.log(chars);
-  
-  // let chf = [];
-  
-  // for (let i = 0; i < chars.length ; i++ ) {
-  //     chars[i] = chars[i].toLowerCase();
-  //     chars1[i] = chars1[i].toLowerCase();
-  //     chars[i] = chars[i].charCodeAt(0) - 96;
-  //     chars1[i] = chars1[i].charCodeAt(0) - 96;
+    charsbrut[i] = charsbrut[i].toLowerCase();
+    charscle[i] = charscle[i].toLowerCase();
+    charsbrut[i] = charsbrut[i].charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
+    charscle[i] = charscle[i].charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
       
-  //     chf[i] = (chars[i] + chars1[i]) % 27;
-  //     chf[i] = String.fromCharCode(chf[i] + 96)
-  // } 
-  // console.log(chars);
-  // console.log(chars1);
-  // console.log(chf);
+    chf[i] = (charsbrut[i] + charscle[i]) % 26;
+    chf[i] = String.fromCharCode(chf[i] + DIFF_UPPER_LOW_TO_NMBR) // j ai un blem de a + y ( tous ce qui ai egale a 26)
+    
+  }
+  console.log(charsbrut);
+  console.log(charscle);
+  console.log(chf);
  
-  document.getElementById("affiche2").value = chiffr;
+  document.getElementById("affiche2").value = chf;
 }
   
