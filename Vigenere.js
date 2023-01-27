@@ -1,46 +1,42 @@
+function delete_char_spe(texte){
+  return texte.replace(/[\s+`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '')
+}
+
 function afficher(){
   let saisie = document.getElementById("saisie").value;
   let lower = saisie.toLowerCase()
-  let outString = lower.replace(/[\s+`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+  let outString = delete_char_spe(lower)
   document.getElementById("affiche").value = outString ;
-  }
+}
 
 
 function chiffrer(){
   const DIFF_UPPER_LOW_TO_NMBR = 96;
 
-  let brut = document.getElementById("brut").value  // let x = 'Yacineg'; 
-  let taille_brut = brut.length;  // let taille_y = y.length 
+  let brut =delete_char_spe(document.getElementById("brut").value);
+  let taille_brut = brut.length; 
 
-  let cle = document.getElementById("cle").value; // let y = 'abc'; 
-  let taille_cle = cle.length;  // let taille_x = x.length 
+  let cle = document.getElementById("cle").value; 
+  let taille_cle = cle.length;
 
-  let nb_repeat = Math.round(taille_brut/taille_cle); // let nb_repeat = Math.round(taille_x/taille_y);
-  let cle_rep = cle.repeat(nb_repeat); // let y_rep = y.repeat(nb_repeat)
+  let nb_repeat = Math.ceil(taille_brut/taille_cle);
+  let cle_rep = cle.repeat(nb_repeat);
   
-  const charsbrut = brut.split('');   // const chars = x.split('');
-  console.log(charsbrut);// console.log(charscle);
-
-  const charscle = cle_rep.split(''); // const charscle = y_rep.split(''); 
-  console.log(charscle);   // console.log(chars);
-  
+  const tab_brut = brut.toLowerCase().split('');
+  const tab_cle = cle_rep.toLowerCase().split(''); 
   let chf = [];
   
-  for (let i = 0; i < charsbrut.length ; i++ ) {
-
-    charsbrut[i] = charsbrut[i].toLowerCase();
-    charscle[i] = charscle[i].toLowerCase();
-    charsbrut[i] = charsbrut[i].charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
-    charscle[i] = charscle[i].charCodeAt(0) - DIFF_UPPER_LOW_TO_NMBR;
+  for (let i = 0; i < tab_brut.length ; i++ ) {
+    tab_brut[i] = tab_brut[i].charCodeAt() - DIFF_UPPER_LOW_TO_NMBR;
+    tab_cle[i] = tab_cle[i].charCodeAt() - DIFF_UPPER_LOW_TO_NMBR;
       
-    chf[i] = (charsbrut[i] + charscle[i]) % 26;
-    chf[i] = String.fromCharCode(chf[i] + DIFF_UPPER_LOW_TO_NMBR) // j ai un blem de a + y ( tous ce qui ai egale a 26)
-    
+    chf[i] = (tab_brut[i] + tab_cle[i]) % 26;
+    chf[i] === 0 ? chf[i] = 26 : chf[i] = chf[i];
+    chf[i] = String.fromCharCode(chf[i] + DIFF_UPPER_LOW_TO_NMBR) ;
   }
-  console.log(charsbrut);
-  console.log(charscle);
-  console.log(chf);
- 
-  document.getElementById("affiche2").value = chf;
+  document.getElementById("affiche2").value = chf.join("");
 }
-  
+
+function dechiffrer(){
+
+}
