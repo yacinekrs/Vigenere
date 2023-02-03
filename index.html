@@ -10,28 +10,22 @@
 </head>
 <body>
   <div id="box">
-    <H2>Veuillez saisir un texte </H2>
-    <input type="text" id="saisie"  value="" size="30"><br>
-    <div id="button">
-      <input type="button" id="bouton" value="Afficher" onclick="afficher()"><br><br>
-    </div>
-    <input type="text" id="affiche"  size="30" value="">
-  </div>
-  
-  <H4 id="separator">********************************************************************************************</H4>
-
-  <div id="box2">
     <H3>Veuillez saisir un texte </H3>
     <input type="text" id="brut"  value="" size="30"><br>
     <H3>Veuillez saisir une clé</H3>
     <input type="text" id="cle"  value="" size="30"><br>
     <div id="button">
+      <input type="button" id="bouton" value="miniscule et sans espace" onclick="afficher()"><br><br>
       <input type="button" id="bouton" value="chiffrer" onclick="chiffrer()"><br><br>
       <input type="button" id="bouton" value="dechiffrer" onclick="dechiffrer()"><br><br>
       <input type="button" id="bouton" value="nombre occurence" onclick="nmbr_occ()"><br><br>
+      <input type="button" id="bouton" value="Exo 9 / Exo 10" onclick="Exo910()"><br><br>
     </div>
-    <input type="text" id="affiche2"  size="30" value="">
+    <input type="text" id="affiche2"  size="30" value=""> <br><br>
+    <div id="reponse"></div>
   </div>
+  <div class="exo" id="exo"></div>
+
   
 </body>
 </html>

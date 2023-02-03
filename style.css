@@ -1,16 +1,24 @@
-
+body{
+  font-family: sans-serif;
+}
 #box{
   width: 220px;
   margin: auto;
 }
-#box2{
-  width: 220px;
-  margin: auto;
-}
-#separator{
-  margin-left: 300px; 
-}
+
 #button{
   margin-top: 20px;
   text-align: center;
+}
+
+#bouton{
+  border-radius: 9px;
+}
+#reponse{
+  width: 600px;
+}
+
+.exo{
+  margin-top: 100px 0px;
+  width: 660px;
 }
